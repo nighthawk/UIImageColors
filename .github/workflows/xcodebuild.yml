@@ -18,7 +18,7 @@ jobs:
           - platform=macOS,variant=Mac Catalyst
           - name=iPhone 14
           - name=Apple TV
-          - name=Apple Watch Series 8 - 44mm
+          - name=Apple Watch Series 8 (45mm)
     steps:
       - uses: actions/checkout@v4
       - name: Build
