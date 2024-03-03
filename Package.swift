@@ -8,26 +8,24 @@ let package = Package(
         .macOS(.v10_10),
         .iOS(.v9),
         .tvOS(.v9),
-        .watchOS(.v2)
+        .watchOS(.v2),
     ],
     products: [
-        .library(
-            name: "UIImageColors",
-            targets: ["UIImageColors"]),
-        .library(
-            name: "UIImageColorsObjc",
-            targets: ["UIImageColorsObjc"])
+        .library(name: "UIImageColors", targets: ["UIImageColors"]),
+        .library(name: "UIImageColorsObjc", targets: ["UIImageColorsObjc"]),
     ],
     targets: [
         .target(name: "UIImageColors"),
         .target(
             name: "UIImageColorsObjc",
-            dependencies: [.target(name: "UIImageColors")]),
+            dependencies: [.target(name: "UIImageColors")]
+        ),
         .testTarget(
             name: "UIImageColorsTests",
             dependencies: [
                 .target(name: "UIImageColors"),
                 .target(name: "UIImageColorsObjc")
-            ])
+            ]
+        ),
     ]
 )
