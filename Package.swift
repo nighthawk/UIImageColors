@@ -15,7 +15,10 @@ let package = Package(
         .library(name: "UIImageColorsObjc", targets: ["UIImageColorsObjc"]),
     ],
     targets: [
-        .target(name: "UIImageColors"),
+        .target(
+            name: "UIImageColors",
+            resources: [.process("Resources")]
+        ),
         .target(
             name: "UIImageColorsObjc",
             dependencies: [.target(name: "UIImageColors")]
