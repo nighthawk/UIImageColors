@@ -14,11 +14,11 @@ jobs:
     strategy:
       matrix:
         destination:
-          - generic/platform=macOS
-          - generic/platform=macOS,variant=Mac Catalyst
-          - generic/platform=iOS
-          - generic/platform=tvOS
-          - generic/platform=watchOS
+          - platform=macOS
+          - platform=macOS,variant=Mac Catalyst
+          - name=iPhone 14
+          - name=Apple TV
+          - name=Apple Watch Series 8 - 44mm
     steps:
       - uses: actions/checkout@v4
       - name: Build
