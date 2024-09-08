@@ -15,7 +15,7 @@ import UIKit
 extension UIImage {
     
     /// Represents the most common colors inside an image.
-    public struct Colors {
+    public struct Colors: Sendable {
         
         /// The most common, non-black/white color.
         public let background: UIColor
@@ -59,7 +59,7 @@ extension UIImage {
     /// - Parameters:
     ///   - quality: The scale quality. Default is `ScaleQuality.high`.
     ///   - completion: The completion block with the ``Colors``.
-    public func getColors(quality: ScaleQuality = .high, _ completion: @escaping (Colors?) -> Void) {
+    public func getColors(quality: ScaleQuality = .high, _ completion: @MainActor @Sendable @escaping (Colors?) -> Void) {
         DispatchQueue.global().async {
             let result = self.getColors(quality: quality)
             DispatchQueue.main.async {

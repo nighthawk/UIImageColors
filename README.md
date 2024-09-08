@@ -150,7 +150,7 @@ Higher qualities will give better results at the cost of performance.
 | ------------------- | ----------- |
 | low                 | 50 pixel    |
 | medium              | 100 pixel   |
-| high                | 250 pixel   | 
+| high                | 250 pixel   |
 | full                | no scaling  |
 | custom (Swift only) | given value |
 

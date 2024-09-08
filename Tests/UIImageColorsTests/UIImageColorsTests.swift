@@ -127,6 +127,7 @@ final class UIImageColorsTests: XCTestCase {
         #endif
     }
     
+    @MainActor
     func testInternalScaling() throws {
         #if canImport(UIKit)
         let cgImage = try XCTUnwrap(image.cgImage)

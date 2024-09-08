@@ -15,7 +15,7 @@ import AppKit
 extension NSImage {
     
     /// Represents the most common colors inside an image.
-    public struct Colors {
+    public struct Colors: Sendable {
         
         /// The most common, non-black/white color.
         public let background: NSColor
@@ -59,11 +59,26 @@ extension NSImage {
     /// - Parameters:
     ///   - quality: The scale quality. Default is `ScaleQuality.high`.
     ///   - completion: The completion block with the ``Colors``.
-    public func getColors(quality: ScaleQuality = .high, _ completion: @escaping (Colors?) -> Void) {
-        DispatchQueue.global().async {
-            let result = self.getColors(quality: quality)
+    public func getColors(quality: ScaleQuality = .high, _ completion: @MainActor @Sendable @escaping (Colors?) -> Void) {
+        let scaledSize = quality._scaleSize(size)
+        guard let resizedCGImage = _resizedCGImage(size: scaledSize) else {
             DispatchQueue.main.async {
-                completion(result)
+                completion(nil)
+            }
+            return
+        }
+        
+        DispatchQueue.global().async {
+            let colors: Colors?
+            if let counter = _ColorCounter(cgImage: resizedCGImage) {
+                let analyzer = _ColorAnalyzer(counter: counter)
+                colors = analyzer?.colors
+            } else {
+                colors = nil
+            }
+            
+            DispatchQueue.main.async {
+                completion(colors)
             }
         }
     }
