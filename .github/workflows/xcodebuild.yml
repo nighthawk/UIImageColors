@@ -2,58 +2,33 @@ name: Xcode Build
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
   workflow_dispatch:
 
 jobs:
-  build-macos:
-    runs-on: macos-11
-    
+  build:
+    name: Build Package
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        destination:
+          - platform=macOS
+          - platform=macOS,variant=Mac Catalyst
+          - name=iPhone 14
+          - name=Apple TV
+          - name=Apple Watch Series 8 (45mm)
     steps:
-      - uses: actions/checkout@v2
-      - name: Build macOS
-        run: xcodebuild -scheme UIImageColors-Package -destination 'platform=macOS'
-      - name: Run macOS tests
-        run: xcodebuild -scheme UIImageColors-Package -destination 'platform=macOS' test
-  
-  build-macos-catalyst:
-    runs-on: macos-11
-    
-    steps:
-      - uses: actions/checkout@v2
-      - name: Build macOS Catalyst
-        run: xcodebuild -scheme UIImageColors-Package -destination 'platform=macOS,arch=x86_64,variant=Mac Catalyst'
-      - name: Run macOS Catalyst tests
-        run: xcodebuild -scheme UIImageColors-Package -destination 'platform=macOS,arch=x86_64,variant=Mac Catalyst' test
-  
-  build-ios:
-    runs-on: macos-11
-    
-    steps:
-      - uses: actions/checkout@v2
-      - name: Build iOS
-        run: xcodebuild -scheme UIImageColors-Package -destination 'name=iPhone 12'
-      - name: Run iOS tests
-        run: xcodebuild -scheme UIImageColors-Package -destination 'name=iPhone 12' test
-  
-  build-tvos:
-    runs-on: macos-11
-    
-    steps:
-      - uses: actions/checkout@v2
-      - name: Build tvOS
-        run: xcodebuild -scheme UIImageColors-Package -destination 'name=Apple TV'
-      - name: Run tvOS tests
-        run: xcodebuild -scheme UIImageColors-Package -destination 'name=Apple TV' test
-  
-  build-watchos:
-    runs-on: macos-11
-    
-    steps:
-      - uses: actions/checkout@v2
-      - name: Build watchOS
-        run: xcodebuild -scheme UIImageColors-Package -destination 'name=Apple Watch Series 6 - 44mm'
-      - name: Run watchOS tests
-        run: xcodebuild -scheme UIImageColors-Package -destination 'name=Apple Watch Series 6 - 44mm' test
+      - uses: actions/checkout@v4
+      - name: Build
+        run: |
+          xcodebuild \
+          -scheme UIImageColors-Package \
+          -destination '${{ matrix.destination }}'
+      - name: Test
+        run: |
+          xcodebuild \
+          -scheme UIImageColors-Package \
+          -destination '${{ matrix.destination }}' \
+          test

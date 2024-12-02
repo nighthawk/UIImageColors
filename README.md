@@ -1,6 +1,6 @@
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fjathu%2FUIImageColors%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/jathu/UIImageColors)
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fjathu%2FUIImageColors%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/jathu/UIImageColors)
-[![Xcode Build](https://github.com/jathu/UIImageColors/actions/workflows/xcodebuild.yml/badge.svg)](https://github.com/jathu/UIImageColors/actions/workflows/xcodebuild.yml)
+[![Xcode Build](https://github.com/FelixHerrmann/UIImageColors/actions/workflows/xcodebuild.yml/badge.svg)](https://github.com/FelixHerrmann/UIImageColors/actions/workflows/xcodebuild.yml)
 
 # UIImageColors
 
@@ -150,7 +150,7 @@ Higher qualities will give better results at the cost of performance.
 | ------------------- | ----------- |
 | low                 | 50 pixel    |
 | medium              | 100 pixel   |
-| high                | 250 pixel   | 
+| high                | 250 pixel   |
 | full                | no scaling  |
 | custom (Swift only) | given value |
 

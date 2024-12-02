@@ -11,7 +11,7 @@ import CoreGraphics
 // MARK: - ScaleQuality
 
 /// The quality the original image should be scaled to.
-public enum ScaleQuality {
+public enum ScaleQuality: Sendable {
     
     /// Scales the image to 50 pixel.
     case low

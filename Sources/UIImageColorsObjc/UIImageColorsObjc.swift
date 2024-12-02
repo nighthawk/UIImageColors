@@ -66,7 +66,7 @@ extension UIImage {
     ///   - quality: The scale quality.
     ///   - completion: The completion block with the ``UIImageColorsObjc``.
     @objc(getColorsWithQuality:completion:)
-    public func getColorsObjc(quality: UIImageColorsScaleQuality, completion: @escaping (UIImageColorsObjc?) -> Void) {
+    public func getColorsObjc(quality: UIImageColorsScaleQuality, completion: @Sendable @escaping (UIImageColorsObjc?) -> Void) {
         getColors(quality: quality._scaleQuality) { colors in
             if let colors = colors {
                 completion(UIImageColorsObjc(background: colors.background, primary: colors.primary, secondary: colors.secondary, detail: colors.detail))
